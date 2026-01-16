@@ -19,7 +19,7 @@ type response struct {
 }
 
 func main() {
-	ln, err := net.Listen("tcp", "127.0.0.1:9999")
+	ln, err := net.Listen("tcp", "0.0.0.0:9999")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -36,6 +36,15 @@ func main() {
 }
 
 func isPrime(num int) bool {
+
+	if num < 2 {
+		return false
+	}
+
+	if num == 2 {
+		return true
+	}
+
 	if (num % 2) == 0 {
 		return false
 	}
@@ -53,7 +62,7 @@ func sendMalformed(conn net.Conn) error {
 		return err
 	}
 
-	_, err = conn.Write(response)
+	_, err = conn.Write(append(response, '\n'))
 	if err != nil {
 		return err
 	}
@@ -67,7 +76,7 @@ func sendCorrect(conn net.Conn, prime bool) error {
 		return err
 	}
 
-	_, err = conn.Write(response)
+	_, err = conn.Write(append(response, '\n'))
 	if err != nil {
 		return err
 	}
