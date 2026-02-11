@@ -153,10 +153,10 @@ func main() {
 
 	// Listen for incoming connections on port 8080
 	ln, err := net.Listen("tcp", ":9999")
-	defer ln.Close()
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer ln.Close()
 
 	fmt.Println("Listening on port 9999")
 
