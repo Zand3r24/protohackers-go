@@ -166,7 +166,7 @@ func main() {
 	messageBroker.msgChannel = make(chan messageType)
 	go messageBroker.startBroker()
 
-	ln, err := net.Listen("tcp", ":9999")
+	ln, err := net.Listen("tcp", ":9998")
 	if err != nil {
 		logger.Error("couldnt start server")
 		os.Exit(2)
